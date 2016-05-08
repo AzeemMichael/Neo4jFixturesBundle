@@ -19,8 +19,8 @@
         }
     ],
     "require": {
-        "pandawan-technology/neo4j-bundle": "dev-master",
-        "pandawan-technology/neo4j-data-fixtures": "dev-master"
+        "pandawan-technology/neo4j-bundle": "^1.0@dev",
+        "pandawan-technology/neo4j-data-fixtures": "^1.0@dev"
     },
     "autoload": {
         "psr-4": {
@@ -29,5 +29,11 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^5.3"
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
 }
