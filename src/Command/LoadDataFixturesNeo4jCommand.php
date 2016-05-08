@@ -3,6 +3,7 @@
 namespace PandawanTechnology\Neo4jFixturesBundle\Command;
 
 use PandawanTechnology\Neo4jBundle\Command\AbstractNeo4jCommand;
+use PandawanTechnology\Neo4jDataFixtures\Executor;
 use PandawanTechnology\Neo4jFixturesBundle\DataFixtures\DataFixturesLoader;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -42,12 +43,21 @@ class LoadDataFixturesNeo4jCommand extends AbstractNeo4jCommand
         } else {
             $paths = [];
 
+            /** @var \Symfony\Component\HttpKernel\Bundle\Bundle $bundle */
             foreach ($this->getApplication()->getKernel()->getBundles() as $bundle) {
                 $paths[] = $bundle->getPath().'/DataFixtures/Neo4j';
             }
         }
 
         $loader = new DataFixturesLoader($this->getContainer());
+
+        foreach ($paths as $path) {
+            if (is_dir($path)) {
+                $loader->loadFromDirectory($path);
+            } elseif (is_file($path)) {
+                $loader->loadFromFile($path);
+            }
+        }
 
         if (!$fixtures = $loader->getFixtures()) {
             throw new \InvalidArgumentException(sprintf('Could not find any fixtures to load in: %s', "\n\n- ".implode("\n- ", $paths)));
