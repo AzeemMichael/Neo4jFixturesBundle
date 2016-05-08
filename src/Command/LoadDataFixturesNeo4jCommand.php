@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class LoadDataFixturesNeo4jCommand extends AbstractNeo4jCommand
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function configure()
     {
@@ -24,7 +24,7 @@ class LoadDataFixturesNeo4jCommand extends AbstractNeo4jCommand
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

@@ -2,7 +2,7 @@
 
 namespace PandawanTechnology\Neo4jFixturesBundle\DataFixtures;
 
-use PandawanTechnology\Neo4jDataFixtures\FixtureInterface;
+use PandawanTechnology\Neo4jDataFixtures\Neo4jFixtureInterface;
 use PandawanTechnology\Neo4jDataFixtures\Loader;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -23,9 +23,9 @@ class DataFixturesLoader extends Loader
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function addFixture(FixtureInterface $fixture)
+    public function addFixture(Neo4jFixtureInterface $fixture)
     {
         if ($fixture instanceof ContainerAwareInterface) {
             $fixture->setContainer($this->container);
