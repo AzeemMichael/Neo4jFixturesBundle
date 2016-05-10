@@ -64,6 +64,10 @@ class LoadDataFixturesNeo4jCommand extends AbstractNeo4jCommand
         }
 
         $executor = new Executor($conn);
+        $executor->setLogger(function ($message) use ($output) {
+            $output->writeln(sprintf('  <comment>></comment> <info>%s</info>', $message));
+        });
+
         $executor->execute($fixtures);
     }
 }
