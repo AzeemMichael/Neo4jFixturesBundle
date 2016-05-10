@@ -30,16 +30,16 @@ class AppKernel extends Kernel
 
 ## Usage
 ### Basic
-By default, the bundle will search for the `/DataFixtures/Neo4j` directories within your registered bundles:
+By default, the bundle will search for the `DataFixtures/Neo4j` directories within your registered bundles. These files must implements the `PandawanTechnology\Neo4jDataFixtures\Neo4jFixtureInterface` but extending `PandawanTechnology\Neo4jDataFixtures\AbstractNeo4jFixture` class is recommended: 
 ```php
 <?php
 // src/AppBundle/DataFixtures/Neo4j/LoadUserData.php
 namespace AppBundle\DataFixtures\Neo4j;
 
 use GraphAware\Common\Connection\ConnectionInterface;
-use PandawanTechnology\Neo4jDataFixtures\FixtureInterface;
+use PandawanTechnology\Neo4jDataFixtures\AbstractNeo4jFixture;
 
-class LoadUserData implements FixtureInterface
+class LoadUserData extends AbstractNeo4jFixture
 {
     /**
      * @inheritDoc
@@ -60,11 +60,11 @@ If you need to use third party services from your container, you can implements 
 namespace AppBundle\DataFixtures\Neo4j;
 
 use GraphAware\Common\Connection\ConnectionInterface;
-use PandawanTechnology\Neo4jDataFixtures\FixtureInterface;
+use PandawanTechnology\Neo4jDataFixtures\AbstractNeo4jFixture;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadUserData implements FixtureInterface, ContainerAwareInterface
+class LoadUserData extends AbstractNeo4jFixture implements ContainerAwareInterface
 {
     private $container;
     
@@ -86,3 +86,4 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
 }
 ```
 
+For more informations, you can have a look into the [Pandawan Technology Neo4j DataFixtures library README file](https://github.com/PandawanTechnology/neo4j-data-fixtures/blob/master/README.md).
